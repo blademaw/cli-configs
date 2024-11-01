@@ -1,20 +1,23 @@
-# Various configs
+# dotfiles
 
-## `zsh` config:
-1. Install `oh-my-zsh` before pasting this config
-2. Copy `.zshrc` into `~/.zshrc`
-3. Install requisite plugins (check `plugins` array in config)
-4. Probably remove aliases (Mac-specific; edit source or remove)
-5. Probably change `conda` initialization block (different for Linux/Windows (?))
+## `fish`
 
-## `tmux` config
-1. Install `tmux` on whatever system
-2. Install `tpm` by cloning repository
-3. Copy config into `~/.tmux.conf`
-4. Start a new tmux session
-5. `<prefix> I` (capital I) installs plugins
-6. `<prefix> r` reloads tmux settings
+1. Install fish via `sudo pacman -S fish`
+2. Copy `fish/` to `~/.config/fish/`
 
----
+## `hyprland.conf`
 
-I think this covers all the steps. Will incrementally update if required.
+1. Ensure hyprland is installed
+2. Copy to `~/.config/hypr/hyprland.conf`
+
+## `nvim`
+
+1. Install neovim via instructions on website
+2. Move `nvim/` to `~/.config/nvim/`
+
+## `.tmux.conf`
+
+1. Install tmux and `tpm` if don't have already
+2. Copy `.tmux.conf` to `~/.tmux.conf`
+3. `<prefix> I` (capital I) installs plugins
+4. `<prefix> r` reloads tmux settings
