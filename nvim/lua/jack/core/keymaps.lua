@@ -42,7 +42,7 @@ keymap.set("n", "<leader>wd", ":close<CR>") -- close window
 
 -- TODO: undo tree & Git
 -- keymap.set("n", "<leader>gs", vim.cmd.Git)
--- keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
 
 -- move commands for moving blocks of code
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")

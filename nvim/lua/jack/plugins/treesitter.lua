@@ -13,9 +13,12 @@ return {
 		treesitter.setup({ -- enable syntax highlighting
 			yati = {
 				enable = true,
+				disable = { "org" },
 			},
 			highlight = {
 				enable = true,
+				disable = { "org" },
+				additional_vim_regex_highlighting = { "org" },
 			},
 			-- enable indentation
 			indent = { enable = false },
@@ -25,6 +28,7 @@ return {
 			},
 			-- ensure these language parsers are installed
 			ensure_installed = {
+				-- "org",
 				"json",
 				-- "javascript",
 				-- "typescript",

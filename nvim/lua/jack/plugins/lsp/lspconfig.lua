@@ -111,6 +111,18 @@ return {
 				})
 			end,
 
+			-- c++
+			["clangd"] = function()
+				lspconfig["clangd"].setup({
+					capabilities = capabilities,
+					-- cmd = {
+					-- 	"clangd",
+					-- 	"-Wall",
+					-- 	"-std=c++20",
+					-- },
+				})
+			end,
+
 			-- Markdown
 			["gopls"] = function()
 				lspconfig["gopls"].setup({

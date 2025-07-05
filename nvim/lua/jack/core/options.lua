@@ -1,10 +1,10 @@
 local opt = vim.opt -- conciseness
 
 -- terminal emulator
-vim.o.shell = "/bin/bash -i" -- fish makes delay between tmux too long
+vim.o.shell = "/usr/bin/bash" -- fish makes delay between tmux too long
 
--- vim.cmd([[command Z w | qa]]) -- don't need to close terminal with :wqa
--- vim.cmd([[cabbrev wqa Z]])
+vim.cmd([[command Z w | qa]]) -- don't need to close terminal with :wqa
+vim.cmd([[cabbrev wqa Z]])
 
 -- cursor
 opt.guicursor = ""
@@ -22,6 +22,8 @@ opt.autoindent = true
 -- line wrapping
 opt.wrap = false
 -- opt.spell = true -- spelling by default
+opt.conceallevel = 2
+opt.concealcursor = "nc"
 
 -- search
 opt.ignorecase = true
