@@ -1,6 +1,5 @@
--- completion for nvim
-
 return {
+  -- completion for nvim
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {

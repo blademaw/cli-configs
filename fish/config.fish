@@ -1,5 +1,4 @@
 # aliases
-alias vi nvim
 alias vim nvim
 alias cat bat
 alias neofetch fastfetch
@@ -38,3 +37,8 @@ else
 end
 # <<< conda initialize <<<
 
+# add doom emacs to path
+set -x PATH "/home/jack/.config/emacs/bin" $PATH
+
+# add nvim to path
+set -x PATH "/opt/nvim-linux-x86_64/bin" $PATH

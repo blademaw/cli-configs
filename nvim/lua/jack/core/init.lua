@@ -1,2 +1,2 @@
-require('jack.core.keymaps')
-require('jack.core.options')
+require("jack.core.keymaps")
+require("jack.core.options")

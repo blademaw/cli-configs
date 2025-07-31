@@ -1,2 +1,2 @@
 require("jack.core")
-require("jack.lazy") -- Lazy package manager
+require("jack.lazy") -- package manager
