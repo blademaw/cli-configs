@@ -20,6 +20,7 @@ return {
 
 		local keymap = vim.keymap -- for conciseness
 
+
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 			callback = function(ev)
@@ -27,12 +28,20 @@ return {
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
 
+        -- floating window borders
+        -- vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        --   border = "rounded",
+        -- })
+        -- vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        --   border = "rounded",
+        -- })
+
 				-- set keybinds
 				opts.desc = "Show LSP references"
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
 				opts.desc = "Go to declaration"
-				keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
+				keymap.set("n", "gd", vim.lsp.buf.definition, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
 				keymap.set("n", "gD", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
@@ -53,7 +62,9 @@ return {
 				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
 				opts.desc = "Show line diagnostics"
-				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+				keymap.set("n", "<leader>d", function()
+          vim.diagnostic.open_float({border = "rounded"})
+        end, opts) -- show diagnostics for line
 
 				opts.desc = "Go to previous diagnostic"
 				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
@@ -62,13 +73,17 @@ return {
 				keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
 
 				opts.desc = "Show documentation for what is under cursor"
-				keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
+				keymap.set("n", "K", function()
+          vim.lsp.buf.hover({border="rounded",})
+        end, opts) -- show documentation for what is under cursor
 
 				opts.desc = "Restart LSP"
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
 				-- show signature in insert mode
-				keymap.set("i", "<C-l>", vim.lsp.buf.signature_help, opts)
+				keymap.set("i", "<C-k>", function()
+          vim.lsp.buf.signature_help({border = "rounded"})
+        end, opts)
 			end,
 		})
 
@@ -120,23 +135,27 @@ return {
         end,
 
         -- c++
-        -- ["clangd"] = function()
-        -- 	lspconfig["clangd"].setup({
-        -- 		capabilities = capabilities,
-        -- 		-- cmd = {
-        -- 		-- 	"clangd",
-        -- 		-- 	"-Wall",
-        -- 		-- 	"-std=c++20",
-        -- 		-- },
-        -- 	})
-        -- end,
+        ["clangd"] = function()
+        	lspconfig["clangd"].setup({
+        		capabilities = capabilities,
+            -- flags = {'--std=c++20', '-I/usr/include/c++/13', '-I/usr/include/x86_64-linux-gnu/c++/13'},
+            init_options = {
+              fallbackFlags = {'-std=c++20', '-I/usr/include/c++/13', '-I/usr/include/x86_64-linux-gnu/c++/13'}
+            }
+        		-- cmd = {
+        		-- 	"clangd",
+        		-- 	"-Wall",
+        		-- 	"-std=c++20",
+        		-- },
+        	})
+        end,
 
         -- golang
-        -- ["gopls"] = function()
-        -- 	lspconfig["gopls"].setup({
-        -- 		capabilities = capabilities,
-        -- 	})
-        -- end,
+        ["gopls"] = function()
+        	lspconfig["gopls"].setup({
+        		capabilities = capabilities,
+        	})
+        end,
 
         -- Lua
         -- ["lua_ls"] = function()

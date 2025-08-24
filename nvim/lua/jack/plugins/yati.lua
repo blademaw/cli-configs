@@ -1,5 +1,6 @@
-return {
-	"yioneko/nvim-yati", -- for better indenting
+return {}
+-- return {
+-- 	"yioneko/nvim-yati", -- for better indenting
 	-- config = function()
 	-- 	require("nvim-treesitter.configs").setup({
 	-- 		yati = {
@@ -8,4 +9,4 @@ return {
 	-- 		},
 	-- 	})
 	-- end,
-}
+-- }

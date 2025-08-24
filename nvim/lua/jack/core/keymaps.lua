@@ -6,8 +6,8 @@ local keymap = vim.keymap -- conciseness
 keymap.set("n", "x", '"_x') -- don't copy single deleted chars
 keymap.set("n", "<leader>O", "moO<Esc>`o") -- adding newlines
 keymap.set("n", "<leader>o", "moo<Esc>`o")
-keymap.set("i", "<C-j>", "<Esc>moO<Esc>`oa")
-keymap.set("i", "<C-k>", "<Esc>moo<Esc>`oa")
+-- keymap.set("i", "<C-j>", "<Esc>moO<Esc>`oa")
+-- keymap.set("i", "<C-k>", "<Esc>moo<Esc>`oa")
 
 -- frames
 keymap.set("n", "<leader>w/", "<C-w>v") -- split window right
