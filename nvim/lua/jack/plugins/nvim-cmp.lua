@@ -1,6 +1,5 @@
--- completion for nvim
-
 return {
+  -- completion for nvim
 	"hrsh7th/nvim-cmp",
 	event = "InsertEnter",
 	dependencies = {
@@ -46,10 +45,11 @@ return {
 			}),
 			-- sources for autocompletion
 			sources = cmp.config.sources({
-				{ name = "nvim_lsp"},
+				{ name = "nvim_lsp" },
 				{ name = "luasnip" }, -- snippets
 				{ name = "buffer" }, -- text within current buffer
 				{ name = "path" }, -- file system paths
+				{ name = "orgmode" }, -- for vim org mode
 			}),
 
 			-- configure lspkind for vs-code like pictograms in completion menu

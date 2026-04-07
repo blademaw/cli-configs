@@ -32,10 +32,10 @@ return {
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
 
 				opts.desc = "Go to declaration"
-				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+				keymap.set("n", "gd", vim.lsp.buf.declaration, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+				keymap.set("n", "gD", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
 
 				opts.desc = "Show LSP implementations"
 				keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
@@ -68,7 +68,7 @@ return {
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
 				-- show signature in insert mode
-				keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+				keymap.set("i", "<C-l>", vim.lsp.buf.signature_help, opts)
 			end,
 		})
 
@@ -82,70 +82,91 @@ return {
 			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 		end
 
-		mason_lspconfig.setup_handlers({
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
+    mason_lspconfig.setup({
+      handlers = {
+        -- default handler for installed servers
+        function(server_name)
+          lspconfig[server_name].setup({
+            capabilities = capabilities,
+          })
+        end,
 
-			-- Haskell
-			["hls"] = function()
-				lspconfig["hls"].setup({
-					capabilities = capabilities,
-				})
-			end,
+        -- Haskell
+        -- ["hls"] = function()
+        -- 	lspconfig["hls"].setup({
+        -- 		capabilities = capabilities,
+        -- 	})
+        -- end,
 
-			-- Python
-			["pyright"] = function()
-				lspconfig["pyright"].setup({
-					capabilities = capabilities,
-				})
-			end,
+        -- Python
+        -- ["pyright"] = function()
+        -- 	lspconfig["pyright"].setup({
+        -- 		capabilities = capabilities,
+        -- 	})
+        -- end,
 
-			-- Markdown
-			["marksman"] = function()
-				lspconfig["marksman"].setup({
-					capabilities = capabilities,
-				})
-			end,
+        -- Markdown
+        -- ["marksman"] = function()
+        -- 	lspconfig["marksman"].setup({
+        -- 		capabilities = capabilities,
+        -- 	})
+        -- end,
 
-			-- Markdown
-			["gopls"] = function()
-				lspconfig["gopls"].setup({
-					capabilities = capabilities,
-				})
-			end,
+        -- rust
+        ["rust_analyzer"] = function()
+          lspconfig["rust_analyzer"].setup({
+            capabilities = capabilities,
+          })
+        end,
 
-			-- Lua
-			["lua_ls"] = function()
-				-- configure lua server (with special settings)
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
-						},
-					},
-				})
-			end,
+        -- c++
+        -- ["clangd"] = function()
+        -- 	lspconfig["clangd"].setup({
+        -- 		capabilities = capabilities,
+        -- 		-- cmd = {
+        -- 		-- 	"clangd",
+        -- 		-- 	"-Wall",
+        -- 		-- 	"-std=c++20",
+        -- 		-- },
+        -- 	})
+        -- end,
 
-			-- F#
-			-- ["ionide"] = function()
-			-- 	lspconfig["ionide"].setup({
-			-- 		-- on_attach = function(client, bufnr)
-			-- 		--   vim.lsp.codelens.refresh()
-			-- 		-- end,
-			-- 		capabilities = capabilities,
-			-- 	})
-			-- end,
-		})
-	end,
+        -- golang
+        -- ["gopls"] = function()
+        -- 	lspconfig["gopls"].setup({
+        -- 		capabilities = capabilities,
+        -- 	})
+        -- end,
+
+        -- Lua
+        -- ["lua_ls"] = function()
+        -- 	-- configure lua server (with special settings)
+        -- 	lspconfig["lua_ls"].setup({
+        -- 		capabilities = capabilities,
+        -- 		settings = {
+        -- 			Lua = {
+        -- 				-- make the language server recognize "vim" global
+        -- 				diagnostics = {
+        -- 					globals = { "vim" },
+        -- 				},
+        -- 				completion = {
+        -- 					callSnippet = "Replace",
+        -- 				},
+        -- 			},
+        -- 		},
+        -- 	})
+        -- end,
+
+        -- F#
+        -- ["ionide"] = function()
+        -- 	lspconfig["ionide"].setup({
+        -- 		-- on_attach = function(client, bufnr)
+        -- 		--   vim.lsp.codelens.refresh()
+        -- 		-- end,
+        -- 		capabilities = capabilities,
+        -- 	})
+        -- end,
+      }
+    })
+  end,
 }

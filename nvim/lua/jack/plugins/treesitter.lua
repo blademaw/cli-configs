@@ -13,19 +13,26 @@ return {
 		treesitter.setup({ -- enable syntax highlighting
 			yati = {
 				enable = true,
+				disable = { "org" },
 			},
 			highlight = {
 				enable = true,
+				disable = { "org" },
+				additional_vim_regex_highlighting = { "org" },
 			},
+      
 			-- enable indentation
 			indent = { enable = false },
+
 			-- enable autotagging (w/ nvim-ts-autotag plugin)
 			autotag = {
 				enable = true,
 			},
+
 			-- ensure these language parsers are installed
 			ensure_installed = {
-				"json",
+				-- "org",
+				-- "json",
 				-- "javascript",
 				-- "typescript",
 				-- "tsx",

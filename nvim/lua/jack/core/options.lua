@@ -1,10 +1,7 @@
 local opt = vim.opt -- conciseness
 
 -- terminal emulator
-vim.o.shell = "/bin/bash -i" -- fish makes delay between tmux too long
-
--- vim.cmd([[command Z w | qa]]) -- don't need to close terminal with :wqa
--- vim.cmd([[cabbrev wqa Z]])
+-- vim.o.shell = "/usr/bin/bash -i"
 
 -- cursor
 opt.guicursor = ""
@@ -21,7 +18,8 @@ opt.autoindent = true
 
 -- line wrapping
 opt.wrap = false
--- opt.spell = true -- spelling by default
+opt.conceallevel = 2
+opt.concealcursor = "nc"
 
 -- search
 opt.ignorecase = true
@@ -35,7 +33,19 @@ opt.signcolumn = "yes"
 opt.backspace = "indent,eol,start"
 
 -- clipboard
-opt.clipboard:append("unnamedplus")
+-- vim.g.clipboard = {
+--   name = "xsel",
+--   copy = {
+--     ["+"] = "xsel --nodetach -i -b",
+--     ["*"] = "xsel --nodetach -i -p",
+--   },
+--   paste = {
+--     ["+"] = "xsel -o -b",
+--     ["*"] = "xsel -o -p",
+--   },
+--   cache_enabled = 1,
+-- }
+vim.opt.clipboard = "unnamedplus"
 
 -- split windows
 opt.splitright = true
@@ -61,8 +71,7 @@ opt.signcolumn = "yes"
 opt.updatetime = 50
 opt.colorcolumn = "80"
 
--- make diffs easy
--- vim.command Diff vim.execute 'w !git diff --no-index % -
+-- diff with buffer
 vim.api.nvim_create_user_command("Diff", function()
 	vim.cmd("w !git diff --no-index % -")
 end, {})

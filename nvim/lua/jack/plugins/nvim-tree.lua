@@ -1,6 +1,5 @@
--- nvim file tree for easy navigation
-
 return {
+  -- nvim file tree for easy navigation
 	"nvim-tree/nvim-tree.lua",
 	dependencies = {
 		"nvim-tree/nvim-web-devicons", -- add icons
